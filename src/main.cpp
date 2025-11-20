@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <shader.h>
@@ -65,9 +66,9 @@ int main()
 
     // A simple triangle defined by three vertices
     float vertices1[] = {
-        -0.9f, -0.5f, 0.0f,  // left
-        0.0f, -0.5f, 0.0f,  // right
-        -0.45f, 0.5f, 0.0f,  // top
+        -0.9f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,// left
+        -0.0f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f, // right
+        -0.45f, 0.5f, 0.0f,  0.0f, 0.0f, 1.0f  // top
     };
 
     float vertices2[] = {
@@ -97,9 +98,14 @@ int main()
     //Bind first VAO and VBO
     glBindVertexArray(VAO[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
+
+    //Vertex data
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1), vertices1, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	// Vertex attributes stay the same
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);	// Vertex attributes stay the same
     glEnableVertexAttribArray(0);
+    //Color data
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3* sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     //Bind second VAO and VBO
     glBindVertexArray(VAO[1]);
@@ -126,9 +132,11 @@ int main()
         secondShader.use();
 
         float timeValue = glfwGetTime();
-        float greenValue = sin(timeValue) / 2.0f + 0.5f;
+        float greenValue = sin(timeValue) / 1.0f + 0.5f;
+        float redValue = sin(timeValue) / 10.0f + 0.5f;
+        float blueValue = sin(timeValue) / 8.0f + 0.5f;
         int vertexColorLocation = glGetUniformLocation(secondShader.ID,"ourColor");
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+        glUniform4f(vertexColorLocation, redValue, greenValue, blueValue, 1.0f);
 
         glBindVertexArray(VAO[1]);
         glDrawArrays(GL_TRIANGLES, 0 ,3);

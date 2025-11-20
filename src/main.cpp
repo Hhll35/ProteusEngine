@@ -1,7 +1,7 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "shader.h"
+#include <shader.h>
 
 using namespace std; 
 
@@ -59,8 +59,8 @@ int main()
     Shader firstShader("C:/Users/Eli/EngineProject/shaders/basic1.vert","C:/Users/Eli/EngineProject/shaders/color1.frag");
     Shader secondShader("C:/Users/Eli/EngineProject/shaders/basic2.vert","C:/Users/Eli/EngineProject/shaders/color2.frag");
 
-    //Shader firstShader("shaders/basic.vert","shaders/color1.frag");
-    //Shader secondShader("shaders/basic.vert","shaders/color2.frag");
+    //Shader firstShader("shaders/basic1.vert","shaders/color1.frag");
+    //Shader secondShader("shaders/basic2.vert","shaders/color2.frag");
 
     // A simple triangle defined by three vertices
     float vertices1[] = {
@@ -115,15 +115,19 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         
         //create first triangle with first shader program
-        //glUseProgram(shaderProgram);
         firstShader.use();
 
         glBindVertexArray(VAO[0]);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
         //create second triangle with second shader program
-        //glUseProgram(shaderProgram2);
+
         secondShader.use();
+
+        float timeValue = glfwGetTime();
+        float greenValue = (sin(timeValue)/ 2.0f) + 0.5f;
+        int vertexColorLocation = glGetUniformLocation(secondShader,"ourColor");
+        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
         glBindVertexArray(VAO[1]);
         glDrawArrays(GL_TRIANGLES, 0 ,3);

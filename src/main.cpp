@@ -10,7 +10,6 @@
 
 #include <shader.h>
 #include <stb_image.h>
-#include <hex_converter.h>
 #include <camera.h>
 
 
@@ -153,7 +152,8 @@ int main()
         glm::vec3( 1.3f, -2.0f, -2.5f),
         glm::vec3( 1.5f,  2.0f, -2.5f),
         glm::vec3( 1.5f,  0.2f, -1.5f),
-        glm::vec3(-1.3f,  1.0f, -1.5f)
+        glm::vec3(-1.3f,  1.0f, -1.5f),
+        glm::vec3(-2.0, 1.6, -1.5)
     };
 
 
@@ -189,7 +189,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load and generate the texture
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("C:/Users/Eli/EngineProject/assets/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("C:/Users/Eli/EngineProject/assets/brick.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -269,7 +269,7 @@ int main()
 
 
         glBindVertexArray(VAO);
-        for (unsigned int i = 0; i < 10; i++)
+        for (unsigned int i = 0; i < 11; i++)
         {
             // calculate the model matrix for each object and pass it to shader before drawing
             glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first

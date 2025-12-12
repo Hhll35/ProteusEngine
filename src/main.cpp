@@ -234,6 +234,13 @@ int main()
     glUniform1i(glGetUniformLocation(textureShader.ID, "texture1"), 0);
     textureShader.setInt("texture2", 1);
 
+
+    unsigned int LightVAO;
+    glGenBuffers(1, &LightVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
 
     // Main render loop: runs until the user closes the window

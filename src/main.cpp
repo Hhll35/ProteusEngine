@@ -36,6 +36,11 @@ float fov   =  45.0f;
 
 glm::vec3 coral(1.0f, 0.5f, 0.31f);
 
+glm::vec3 lightColor(0.0f, 1.0f, 0.0f);
+glm::vec3 toyColor(1.0f, 0.5f, 0.31f);
+
+glm::vec3 result = lightColor * toyColor;
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);

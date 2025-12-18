@@ -12,3 +12,7 @@
 #include <stb_image.h>
 #include <camera.h>
 
+class textureLoader
+{
+
+};

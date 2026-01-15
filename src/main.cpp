@@ -69,7 +69,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Create a window (800x600). If creation fails, exit.
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Opengl Engine", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proteus Engine", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to open GLFW window" << std::endl;

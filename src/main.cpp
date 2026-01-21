@@ -98,25 +98,25 @@ int main()
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    Shader textureShader("C:/Users/Eli/EngineProject/shaders/basicVertex.vert","C:/Users/Eli/EngineProject/shaders/basicFrag.frag");
+    Shader textureShader("C:/Users/Eli/ProteusEngine/shaders/basicVertex.vert","C:/Users/Eli/ProteusEngine/shaders/basicFrag.frag");
 
     glEnable(GL_DEPTH_TEST);
 
     float vertices[] = {
         //vertices           //texture coords
-        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+       -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+       -0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
+       -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
-        -0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+       -0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f, 0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+       -0.5f,  0.5f,  0.5f, 0.0f, 1.0f,
+       -0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
 
         -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
         -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -132,20 +132,21 @@ int main()
         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 
-        -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+       -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+       -0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+       -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-        -0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
+       -0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f, 0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f, 0.0f, 1.0f
+       -0.5f,  0.5f,  0.5f, 0.0f, 0.0f,
+       -0.5f,  0.5f, -0.5f, 0.0f, 1.0f
     };
+
 
     glm::vec3  cubePositions[] =
     {
@@ -195,7 +196,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load and generate the texture
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("C:/Users/Eli/EngineProject/assets/brick.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("C:/Users/Eli/ProteusEngine/assets/brick.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -218,7 +219,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
     stbi_set_flip_vertically_on_load(true);
-    data = stbi_load("C:/Users/Eli/EngineProject/assets/awesomeface.png", &width, &height, &nrChannels,0);
+    data = stbi_load("C:/Users/Eli/ProteusEngine/assets/awesomeface.png", &width, &height, &nrChannels,0);
     if(data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -341,5 +342,5 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     lastX = xpos;
     lastY = ypos;
 
-    camera.ProcessMouseMovement(xoffset, yoffset);
+    camera.ProcessMouseMovement(xoffset, yoffset, true);
 }

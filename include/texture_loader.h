@@ -9,9 +9,11 @@
 #include <sstream>
 #include <iostream>
 
-class textureLoader 
+class TextureLoader 
 {
     public:
+
+        TextureLoader(const char* texturePath);
 
     private:
     

@@ -260,7 +260,7 @@ int main()
         direction.y = sin(glm::radians(pitch));
         direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
-        glClearColor(0.44444f, 0.66222f, 1.05333f, 1.0f);
+        glClearColor(0.329f, 0.584f, 0.929f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

@@ -40,6 +40,7 @@ glm::vec3 lightColor(0.0f, 1.0f, 0.0f);
 glm::vec3 toyColor(1.0f, 0.5f, 0.31f);
 
 glm::vec3 result = lightColor * toyColor;
+glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -98,7 +99,8 @@ int main()
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    Shader textureShader("C:/Users/Eli/ProteusEngine/shaders/basicVertex.vert","C:/Users/Eli/ProteusEngine/shaders/basicFrag.frag");
+    Shader basicShader("C:/Users/Eli/ProteusEngine/shaders/basicVertex.vert", "C:/Users/Eli/ProteusEngine/shaders/basicFrag.frag");
+    Shader lightCubeShader("C:/Users/Eli/ProteusEngine/shaders/lightCube.vert", "C:/Users/Eli/ProteusEngine/shaders/lightCube.frag");
 
     glEnable(GL_DEPTH_TEST);
 
@@ -151,16 +153,6 @@ int main()
     glm::vec3  cubePositions[] =
     {
         glm::vec3( 0.0f,  0.0f,  0.0f),
-        glm::vec3( 2.0f,  5.0f, -15.0f),
-        glm::vec3(-1.5f, -2.2f, -2.5f),
-        glm::vec3(-3.8f, -2.0f, -12.3f),
-        glm::vec3( 2.4f, -0.4f, -3.5f),
-        glm::vec3(-1.7f,  3.0f, -7.5f),
-        glm::vec3( 1.3f, -2.0f, -2.5f),
-        glm::vec3( 1.5f,  2.0f, -2.5f),
-        glm::vec3( 1.5f,  0.2f, -1.5f),
-        glm::vec3(-1.3f,  1.0f, -1.5f),
-        glm::vec3(-2.0, 1.6, -1.5)
     };
 
 
@@ -231,18 +223,17 @@ int main()
     }
     stbi_image_free(data);    
 
-    textureShader.use();
-    glUniform1i(glGetUniformLocation(textureShader.ID, "texture1"), 0);
-    textureShader.setInt("texture2", 1);
-
 
     unsigned int LightVAO;
-    glGenBuffers(1, &LightVAO);
+    glGenVertexArrays(1, &LightVAO);
+    glBindVertexArray(LightVAO);
+
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); 
+    
 
     // Main render loop: runs until the user closes the window
     while (!glfwWindowShouldClose(window))
@@ -271,18 +262,21 @@ int main()
         glBindTexture(GL_TEXTURE_2D, texture2);
 
         //start rendering
-        textureShader.use();
+        basicShader.use();
+        basicShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
+        basicShader.setVec3("lightColor",  1.0f, 1.0f, 1.0f);
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        textureShader.setMat4("projection", projection);
+        basicShader.setMat4("projection", projection);
 
         glm::mat4 view = camera.GetViewMatrix();
-        textureShader.setMat4("view", view);
+        basicShader.setMat4("view", view);
 
-        float time = glfwGetTime();
+        glm::mat4 model = glm::mat4(1.0f);
+        basicShader.setMat4("model", model);
 
+        glBindVertexArray(LightVAO);
 
-        glBindVertexArray(VAO);
         for (unsigned int i = 0; i < 11; i++)
         {
             // calculate the model matrix for each object and pass it to shader before drawing
@@ -290,13 +284,25 @@ int main()
             model = glm::translate(model, cubePositions[i]);
             float angle = 20.0f * i;
             model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            textureShader.setMat4("model", model);
+            basicShader.setMat4("model", model);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+        float time = glfwGetTime();
 
+        lightCubeShader.use();
+        // also draw the lamp object
+        lightCubeShader.use();
+        lightCubeShader.setMat4("projection", projection);
+        lightCubeShader.setMat4("view", view);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, lightPos);
+        model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+        lightCubeShader.setMat4("model", model);
 
-
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        
         // Swap the front and back buffers 
         // (This displays whatever was drawn in the previous frame)
         glfwSwapBuffers(window);

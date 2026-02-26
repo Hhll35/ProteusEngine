@@ -1,3 +1,6 @@
+#ifndef MESH_H
+#define MESH_H
+
 #include <iostream>
 #include <cmath>
 
@@ -11,9 +14,11 @@
 #include <shader.h>
 #include <stb_image.h>
 #include <camera.h>
-#include <window.h>
 
-Window::Window()
+class Mesh
 {
-    
-}
+
+};
+
+
+#endif

@@ -11,9 +11,3 @@
 #include <shader.h>
 #include <stb_image.h>
 #include <camera.h>
-#include <window.h>
-
-Window::Window()
-{
-    
-}

@@ -40,7 +40,7 @@ glm::vec3 lightColor(0.0f, 1.0f, 0.0f);
 glm::vec3 toyColor(1.0f, 0.5f, 0.31f);
 
 glm::vec3 result = lightColor * toyColor;
-glm::vec3 lightPos(0.0f, 0.4f, 1.5f);
+glm::vec3 lightPos(0.0f, 0.0f, 1.5f);
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -244,11 +244,18 @@ int main()
 
         //start rendering
         basicShader.use();
-        basicShader.setInt("texture1", 0);
-        basicShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        basicShader.setVec3("lightColor",  1.0f, 1.0f, 1.0f);
-        basicShader.setVec3("lightPos", lightPos);
+        basicShader.setInt("material.diffuse", 0);
         basicShader.setVec3("viewPos", camera.Position);
+        basicShader.setVec3("light.position", lightPos);
+
+        basicShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+        basicShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+        basicShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        basicShader.setFloat("material.shininess", 150.0f);
+
+        basicShader.setVec3("light.ambient",  0.2f, 0.2f, 0.2f);
+        basicShader.setVec3("light.diffuse",  0.5f, 0.5f, 0.5f); // darken diffuse light a bit
+        basicShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f); 
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         basicShader.setMat4("projection", projection);
@@ -268,7 +275,7 @@ int main()
             glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
             model = glm::translate(model, cubePositions[i]);
             float angle = 20.0f * i;
-            float spinangle = glfwGetTime() * 50.0f; // 50 = rotation speed
+            float spinangle = 10.0f; // 50 = rotation speed
             model = glm::rotate(model, glm::radians(spinangle), glm::vec3(1.0f, 0.3f, 0.5f));;
             basicShader.setMat4("model", model);
 

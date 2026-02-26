@@ -203,10 +203,31 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load and generate the texture
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("C:/Users/Eli/ProteusEngine/assets/brick.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("C:/Users/Eli/ProteusEngine/assets/diffuse.png", &width, &height, &nrChannels, 0);
     if (data)
     {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
+
+    //create first texture
+    unsigned int texture2;
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    // set the texture wrapping/filtering options (on the currently bound texture object)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    data = stbi_load("C:/Users/Eli/ProteusEngine/assets/specular.png", &width, &height, &nrChannels, 0);
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
     else
@@ -238,19 +259,21 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1);
-
         //start rendering
         basicShader.use();
         basicShader.setInt("material.diffuse", 0);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+
+
+        basicShader.setInt("material.specular",1);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture2);
+
         basicShader.setVec3("viewPos", camera.Position);
         basicShader.setVec3("light.position", lightPos);
 
         basicShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-        basicShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
-        basicShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
         basicShader.setFloat("material.shininess", 150.0f);
 
         basicShader.setVec3("light.ambient",  0.2f, 0.2f, 0.2f);
@@ -275,7 +298,7 @@ int main()
             glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
             model = glm::translate(model, cubePositions[i]);
             float angle = 20.0f * i;
-            float spinangle = 10.0f; // 50 = rotation speed
+            float spinangle = glfwGetTime() * 50.0; // 50 = rotation speed
             model = glm::rotate(model, glm::radians(spinangle), glm::vec3(1.0f, 0.3f, 0.5f));;
             basicShader.setMat4("model", model);
 

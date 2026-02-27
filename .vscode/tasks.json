@@ -4,7 +4,7 @@
         {
             "label": "CMake Configure + Build + Run",
             "type": "shell",
-            "command": "cmake .. ; cmake --build . ; ./main.exe",
+            "command": "cmake .. ; cmake --build . ; ./../bin/main.exe",
             "options": {
                 "cwd": "${workspaceFolder}/build"
             },

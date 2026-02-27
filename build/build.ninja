@@ -126,16 +126,16 @@ build CMakeFiles/main.dir/src/glad.c.obj: C_COMPILER__main_unscanned_ C$:/Users/
 
 
 #############################################
-# Link the executable main.exe
+# Link the executable C:\Users\Eli\ProteusEngine\bin\main.exe
 
-build main.exe: CXX_EXECUTABLE_LINKER__main_ CMakeFiles/main.dir/src/camera.cpp.obj CMakeFiles/main.dir/src/main.cpp.obj CMakeFiles/main.dir/src/material.cpp.obj CMakeFiles/main.dir/src/mesh.cpp.obj CMakeFiles/main.dir/src/renderer.cpp.obj CMakeFiles/main.dir/src/shader.cpp.obj CMakeFiles/main.dir/src/stb_image.cpp.obj CMakeFiles/main.dir/src/texture_loader.cpp.obj CMakeFiles/main.dir/src/transform.cpp.obj CMakeFiles/main.dir/src/window.cpp.obj CMakeFiles/main.dir/src/glad.c.obj
+build C$:/Users/Eli/ProteusEngine/bin/main.exe: CXX_EXECUTABLE_LINKER__main_ CMakeFiles/main.dir/src/camera.cpp.obj CMakeFiles/main.dir/src/main.cpp.obj CMakeFiles/main.dir/src/material.cpp.obj CMakeFiles/main.dir/src/mesh.cpp.obj CMakeFiles/main.dir/src/renderer.cpp.obj CMakeFiles/main.dir/src/shader.cpp.obj CMakeFiles/main.dir/src/stb_image.cpp.obj CMakeFiles/main.dir/src/texture_loader.cpp.obj CMakeFiles/main.dir/src/transform.cpp.obj CMakeFiles/main.dir/src/window.cpp.obj CMakeFiles/main.dir/src/glad.c.obj
   LINK_LIBRARIES = -lglfw3dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LC:/Users/Eli/ProteusEngine/lib
   OBJECT_DIR = CMakeFiles\main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = main.exe
-  TARGET_IMPLIB = libmain.dll.a
+  TARGET_FILE = C:\Users\Eli\ProteusEngine\bin\main.exe
+  TARGET_IMPLIB = C:\Users\Eli\ProteusEngine\bin\libmain.dll.a
   TARGET_PDB = main.exe.dbg
 
 
@@ -164,7 +164,9 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build main: phony main.exe
+build main: phony C$:/Users/Eli/ProteusEngine/bin/main.exe
+
+build main.exe: phony C$:/Users/Eli/ProteusEngine/bin/main.exe
 
 # =============================================================================
 # Folder targets.
@@ -174,7 +176,7 @@ build main: phony main.exe
 #############################################
 # Folder: C:/Users/Eli/ProteusEngine/build
 
-build all: phony main.exe
+build all: phony C$:/Users/Eli/ProteusEngine/bin/main.exe
 
 # =============================================================================
 # Built-in targets

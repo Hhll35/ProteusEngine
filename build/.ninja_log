@@ -1,0 +1,13 @@
+# ninja log v6
+25	407	7939056795526282	CMakeFiles/main.dir/src/material.cpp.obj	6d600cf86a9e8392
+112	7497	7939056796488730	CMakeFiles/main.dir/src/glad.c.obj	62ee05473c8cc0f8
+96	435	7939056796233608	CMakeFiles/main.dir/src/transform.cpp.obj	654a0b7ac1de30d9
+36	3539	7939056795629679	CMakeFiles/main.dir/src/mesh.cpp.obj	4019e0292716b497
+7	2819	7939056795337718	CMakeFiles/main.dir/src/camera.cpp.obj	cb8529eb1a9b0b20
+86	3406	7939056796132786	CMakeFiles/main.dir/src/texture_loader.cpp.obj	eca7b7bd16f80761
+104	3665	7939056796298777	CMakeFiles/main.dir/src/window.cpp.obj	484f143aca6264c2
+70	3720	7939056795985526	CMakeFiles/main.dir/src/stb_image.cpp.obj	92a6d37c6607734e
+50	3630	7939056795768990	CMakeFiles/main.dir/src/renderer.cpp.obj	8118aeb3a8595465
+58	3680	7939056795850597	CMakeFiles/main.dir/src/shader.cpp.obj	6b369c6d08e9ddbb
+16	3838	7939056795423424	CMakeFiles/main.dir/src/main.cpp.obj	b3b15d854e05149d
+7501	7896	7939056870265470	main.exe	204840675d1b52a2

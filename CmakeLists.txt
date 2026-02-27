@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.15)
+
+project(MainProject LANGUAGES C CXX)
+
+# Use C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Source directories
+set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
+set(VENDOR_DIR ${CMAKE_SOURCE_DIR}/vendor)
+set(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
+
+# Collect all source files
+file(GLOB CPP_SRC "${SRC_DIR}/*.cpp")
+file(GLOB C_SRC   "${SRC_DIR}/*.c")
+
+# Create executable
+add_executable(main ${CPP_SRC} ${C_SRC})
+
+# Include directories
+target_include_directories(main PRIVATE
+    ${INC_DIR}
+    ${VENDOR_DIR}
+)
+
+# Library directory
+target_link_directories(main PRIVATE ${LIB_DIR})
+
+# Link libraries
+target_link_libraries(main PRIVATE glfw3dll)

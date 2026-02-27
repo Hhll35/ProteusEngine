@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cmath>
 
+#include <iostream>
+#include <cmath>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -8,9 +11,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <shader.h>
-#include <stb_image.h>
-#include <camera.h>
+#include "shader.h"
+#include "stb_image.h"
+#include "camera.h"
+#include "renderer.h"
 
 
 glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);

@@ -1,7 +1,7 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
-#include <texture_loader.h>
+#include "texture_loader.h"
 
 #include <string>
 #include <fstream>

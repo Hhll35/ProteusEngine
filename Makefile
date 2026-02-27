@@ -4,13 +4,14 @@ CXX := C:/mingw64/bin/g++.exe
 # Directories
 SRC_DIR := src
 INC_DIR := include
+VENDOR_DIR := vendor
 LIB_DIR := lib
 
 # Output
 OUT := main.exe
 
 # Flags
-CXXFLAGS := -g -std=c++17 -I$(INC_DIR)
+CXXFLAGS := -g -std=c++17 -I$(INC_DIR) -I$(VENDOR_DIR)
 LDFLAGS := -L$(LIB_DIR) -lglfw3dll
 
 # Source files

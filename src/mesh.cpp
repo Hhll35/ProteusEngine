@@ -12,3 +12,9 @@
 #include "stb_image.h"
 #include "camera.h"
 #include "renderer.h"
+#include "mesh.h"
+
+Mesh::Mesh()
+{
+
+}

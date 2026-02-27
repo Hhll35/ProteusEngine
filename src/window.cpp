@@ -14,7 +14,7 @@
 #include "renderer.h"
 #include "window.h"
 
-Window::Window()
+Window::Window(float width, float height, const char* name)
 {
     
 }

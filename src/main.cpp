@@ -293,7 +293,7 @@ int main()
         glm::mat4 model = glm::mat4(1.0f);
         basicShader.setMat4("model", model);
 
-        glBindTexture(GL_TEXTURE_2D, texture1);
+        glBindTexture(GL_TEXTURE_2D, texture1); 
         glBindVertexArray(VAO);
 
         for (unsigned int i = 0; i < 1; i++)

@@ -2,27 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build (make)",
+            "label": "CMake Configure + Build + Run",
             "type": "shell",
-            "command": "make",
+            "command": "cmake .. ; cmake --build . ; ./main.exe",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/build"
             },
             "group": {
                 "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Run (make run)",
-            "type": "shell",
-            "command": "make run",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "group": {
-                "kind": "test",
                 "isDefault": true
             },
             "problemMatcher": []

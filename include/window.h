@@ -9,9 +9,9 @@ class Window
         Window(float width, float height, const char* name);
         ~Window();
 
+        bool init(int width, int height, const char* name);
         bool shouldClose() const;
-        void pollEvents();
-        void swapBuffers();
+
 
         GLFWwindow* getGLFWWindow() const;
     private:

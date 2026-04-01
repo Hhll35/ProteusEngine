@@ -14,7 +14,15 @@
 #include "renderer.h"
 #include "window.h"
 
-Window::Window(float width, float height, const char* name)
+Window::Window(float width, float height, const char* name){}
+
+Window::~Window()
 {
-    
+    if (window)
+    {
+        glfwDestroyWindow(window);
+    }
+    glfwTerminate();
 }
+
+bool Window::Init();

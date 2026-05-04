@@ -12,7 +12,7 @@
 class TextureLoader 
 {
     public:
-
+        unsigned int ID;
         TextureLoader(const char* texturePath);
 
     private:

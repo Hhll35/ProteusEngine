@@ -9,8 +9,9 @@
 70	3720	7939056795985526	CMakeFiles/main.dir/src/stb_image.cpp.obj	92a6d37c6607734e
 37	2963	7939109742014045	CMakeFiles/main.dir/src/renderer.cpp.obj	8118aeb3a8595465
 58	3680	7939056795850597	CMakeFiles/main.dir/src/shader.cpp.obj	6b369c6d08e9ddbb
-33	1472	7996253494338487	CMakeFiles/main.dir/src/main.cpp.obj	b3b15d854e05149d
-2114	2451	7939086756398309	main.exe	204840675d1b52a2
-1473	2126	7996253508739931	C:/Users/Eli/ProteusEngine/bin/main.exe	8c3c02f719e080be
 62	1592	7996255808313034	CMakeFiles/main.dir/src/main.cpp.obj	b3b15d854e05149d
+2114	2451	7939086756398309	main.exe	204840675d1b52a2
 1593	1887	7996255823634692	C:/Users/Eli/ProteusEngine/bin/main.exe	8c3c02f719e080be
+3460	11210	7996266504788694	CMakeFiles/main.dir/src/texture_loader.cpp.obj	eca7b7bd16f80761
+3055	11344	7996266500762024	CMakeFiles/main.dir/src/main.cpp.obj	b3b15d854e05149d
+11344	11604	7996266583632156	C:/Users/Eli/ProteusEngine/bin/main.exe	8c3c02f719e080be

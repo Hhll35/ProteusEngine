@@ -16,7 +16,7 @@
             "MIMode": "gdb",
             "miDebuggerPath": "C:/mingw64/bin/gdb.exe",
 
-            "preLaunchTask": "Build (make)"
+            "preLaunchTask": "cmake .. ; cmake --build . ; ./../bin/main.exe"
         }
     ]
 }

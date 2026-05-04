@@ -18,8 +18,9 @@
 
 class Mesh
 {
-
+    Mesh();
 };
+
 
 
 #endif

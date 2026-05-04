@@ -25,4 +25,7 @@ Window::~Window()
     glfwTerminate();
 }
 
-bool Window::Init();
+bool Window::init(int width, int height, const char* name)
+{
+
+}
